@@ -73,12 +73,27 @@ io.on('connection', (socket) => {
             case '98':
                 if(session.orderHistory.length > 0){
                     console.log(session.orderHistory)
+
                     function getOrderHistory(){
                         let htmlList = '<ul style="list-style-type: none"> <p> your oder history: <p/> <br/>';
-                        session.orderHistory[0].forEach(order => {
-                            htmlList += `<li style="font-weight: bold;">${order.name} - ( $${order.price} )</li>`;
+                        session.orderHistory.forEach(innerOrder => {
+                            innerOrder.forEach(order=>{
+                                htmlList += `<li style="font-weight: bold;">${order.name} -  $${order.price} </li>`;
+                            })
                         });
+
+                        const totalPrice = session.orderHistory.reduce((acc, category) => {
+                            const categoryTotal = category.reduce((categoryAcc, meal) => {
+                                console.log(categoryAcc, meal.price)
+                              return categoryAcc + meal.price;
+                            }, 0);
+                            console.log(acc,categoryTotal )
+                            return acc + categoryTotal;
+                          }, 0);
+
+                        htmlList += `<br/><p style="font-weight: bold;">Total prcice: $${totalPrice}<p/>`
                         htmlList += '</ul> <br/>';
+
                         return htmlList
                     }
                     res = getOrderHistory();
@@ -90,9 +105,18 @@ io.on('connection', (socket) => {
                 break;
             case '97':
                 if(session.currentOrder.length > 0){
-                    res =`<p style="font-weight: bold;">Current Order: ${JSON.stringify(session.currentOrder)}<p/> <br/>`
+                    console.log(session.currentOrder)
+                    function getCurrentOrder(){
+                        let htmlList = '<ul style="list-style-type: none"> <p> your current order: <p/> <br/>';
+                        session.currentOrder.forEach(order => {
+                            htmlList += `<li style="font-weight: bold;">${order.name} - $${order.price} </li>`;
+                        });
+                        htmlList += '</ul> <br/>';
+                        return htmlList
+                    }
+                    res = getCurrentOrder();
                 }else{
-                    res = '<p style="font-weight: bold;">Your current order is empty.<p/> <br/>';
+                    res = '<p style="font-weight: bold;">Your have not placed an order yet.<p/> <br/>';
                 }
                 res += getWelcomeMessage()
                 response = addInputToUI(false, res)
@@ -100,7 +124,7 @@ io.on('connection', (socket) => {
             case '0':
                 if (session.currentOrder.length > 0) {
                     session.currentOrder = [];
-                    res = '<p style="font-weight: bold;">Cancelled your current order.<p/> <br/>';
+                    res = '<p style="font-weight: bold;">your current order has been cancelled.<p/> <br/>';
                 } else {
                     res = '<p style="font-weight: bold;">No order to cancel.<p/> <br/>';
                 }
