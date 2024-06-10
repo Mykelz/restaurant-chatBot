@@ -45,10 +45,10 @@ body {
 
 .message-right {
     list-style: none;
-    padding: 4px 6px;
+    padding: 8px 12px;
     margin: 6px;
     max-width: 150px;
-    width: 120px;
+    width: 80px;
     font-size: 18px;
     word-wrap: break-word;
 }
