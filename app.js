@@ -137,7 +137,7 @@ io.on('connection', (socket) => {
                 if (meal) {
                     session.currentOrder.push(meal);
                     console.log(session.currentOrder)
-                    res = `<p style="font-weight: bold;">${meal.name} added to your order. What would you like to do next?<p/> <br/>`;
+                    res = `<p style="font-weight: bold;">${meal.name} added to your order. You can add more items or proceed to checkout.<p/> <br/>`;
                 } else {
                     res = '<p style="font-weight: bold;">Invalid selection. Please try again.<p/> <br/>';
                 }
