@@ -48,6 +48,7 @@ body {
     padding: 4px 6px;
     margin: 6px;
     max-width: 150px;
+    width: 120px;
     font-size: 18px;
     word-wrap: break-word;
 }
