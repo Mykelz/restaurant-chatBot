@@ -20,25 +20,34 @@ body {
     border: 8px solid #dddddd;
     border-radius: 25px;
     overflow: hidden;
-    width: 350px;
+    width: auto;
 }
 
 .message-container{
     display: flex;
     flex-direction: column;
     background-color: #f6f6f6;
-    width: 400px;
+    width: auto;
     height: 500px;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
 
-.message-left, .message-right {
+.message-left {
     list-style: none;
     padding: 8px 12px;
     margin: 12px;
     max-width: 300px;
+    font-size: 18px;
+    word-wrap: break-word;
+}
+
+.message-right {
+    list-style: none;
+    padding: 8px 12px;
+    margin: 12px;
+    max-width: 100px;
     font-size: 18px;
     word-wrap: break-word;
 }
