@@ -47,7 +47,7 @@ body {
     list-style: none;
     padding: 4px 6px;
     margin: 6px;
-    max-width: auto;
+    max-width: 150px;
     font-size: 18px;
     word-wrap: break-word;
 }
