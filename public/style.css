@@ -20,7 +20,7 @@ body {
     border: 8px solid #dddddd;
     border-radius: 25px;
     overflow: hidden;
-    width: auto;
+    width: 350px;
 }
 
 .message-container{
@@ -45,7 +45,7 @@ body {
 
 .message-right {
     list-style: none;
-    padding: 8px 12px;
+    padding: 4px 6px;
     margin: 12px;
     max-width: 100px;
     font-size: 18px;
